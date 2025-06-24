@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FatinGPT</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #1e1e1e;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    header {
+      background-color: #343541;
+      padding: 20px;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      border-bottom: 1px solid #3f4045;
+    }
+
+    main {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .message {
+      background-color: #444654;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      max-width: 600px;
+    }
+
+    .message.user {
+      background-color: #3c3f50;
+      align-self: flex-end;
+      text-align: right;
+    }
+
+    footer {
+      padding: 10px 20px;
+      background-color: #343541;
+      border-top: 1px solid #3f4045;
+      display: flex;
+      gap: 10px;
+    }
+
+    input[type="text"] {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      background-color: #10a37f;
+      color: white;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0e8c6c;
+    }
+  </style>
+</head>
+<body>
+
+  <header>FatinGPT</header>
+
+  <main id="chat-area">
+    <div class="message">Hello! How can I help you today?</div>
+  </main>
+
+  <footer>
+    <input type="text" id="user-input" placeholder="Type your message...">
+    <button onclick="sendMessage()">Send</button>
+  </footer>
+
+  <script>
+    function sendMessage() {
+      const input = document.getElementById('user-input');
+      const messageText = input.value.trim();
+      if (messageText === '') return;
+
+      const chatArea = document.getElementById('chat-area');
+
+      const userMessage = document.createElement('div');
+      userMessage.className = 'message user';
+      userMessage.textContent = messageText;
+      chatArea.appendChild(userMessage);
+
+      input.value = '';
+
+      const botReply = document.createElement('div');
+      botReply.className = 'message';
+      botReply.textContent = 'Processing... (no backend yet)';
+      chatArea.appendChild(botReply);
+
+      chatArea.scrollTop = chatArea.scrollHeight;
+    }
+  </script>
+
+</body>
+</html>
